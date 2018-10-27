@@ -1,0 +1,18 @@
+class Person{
+    private int age;
+    private String name;
+    public Person(int age, String name){
+        this.age = age;
+        this.name = name;
+    }
+}
+class Student{}
+public class Test{
+    public static void main(String[] args){
+        fun(new Person(20, "张三"));
+        fun("hello");
+    }      
+    public static void fun(Object obj){
+        System.out.println(obj.toString());
+    }    
+}                                
