@@ -1,0 +1,13 @@
+# exercise2
+JAVA
+
+public class Test{
+    public static void main(String[] args){
+        String str1 = "hello";
+        String str2 = "Hello";
+        //不区分大小写相等比较
+        System.out.println(str1.equalsIgnoreCase(str2));
+        //比较两个字符串大小
+        System.out.println(str1.compareTo(str2));
+    }
+}                                         
