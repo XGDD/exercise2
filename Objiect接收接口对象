@@ -1,0 +1,20 @@
+interface IMessage{
+    public void getMessage();
+}
+class IMessageImpl implements IMessage{
+    public String toString(){
+        return "i am a small bitter";
+    }
+    public void getMessage(){
+        System.out.println("比特欢迎你");
+    }
+}
+public class Test{
+    public static void main(String[] args){
+        IMessage msg = new IMessageImpl();//子类向父接口转换
+        Object obj = msg;//接口向Object型转换
+        System.out.println(obj);
+        IMessage temp = (IMessage) obj;//强制类型转换
+        temp.getMessage();
+    }
+}
