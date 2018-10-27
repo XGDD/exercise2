@@ -1,0 +1,11 @@
+public class Test{
+    public static void main(String[] args){
+        //向上转型
+        Object obj = new int[]{1, 2, 3, 4, 5, 6};
+        //向下转型
+        int[] data = (int[])obj;
+        for(int i: data){
+            System.out.println(i);
+        }
+    }    
+}                                
