@@ -1,0 +1,9 @@
+public class Test{
+    public static void main(String[] args){
+        String str1 = "helloworld";
+        //替换所有指定内容
+        System.out.println(str1.replaceAll("l", " "));
+        //替换首个指定内容
+        System.out.println(str1.replaceFirst("l", " "));
+    }
+}                                         
