@@ -1,0 +1,13 @@
+public class Test{
+    public static void main(String[] args){
+        String str1 = "helloworld";
+        //判断str是否存在于本字符串
+        System.out.println(str1.contains("ll"));
+        //判断字符串是否以指定字符开头
+        System.out.println(str1.startsWith("h"));
+        //从指定位置开始判断是否以指定字符串开头
+        System.out.println(str1.startsWith("o", 6));
+        //判断是否以指定字符串结尾
+        System.out.println(str1.endsWith("d"));
+    }
+}                                         
