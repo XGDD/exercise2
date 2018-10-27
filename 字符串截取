@@ -1,0 +1,9 @@
+public class Test{
+    public static void main(String[] args){
+        String str1 = "hello world hello bit";
+        //从指定位置开始截取到字符串结尾
+        System.out.println(str1.substring(3));
+        //截取部分(左闭右开)
+        System.out.println(str1.substring(3, 9));
+    }
+}                                         
