@@ -1,0 +1,12 @@
+public class Test{
+    public static void main(String[] args){
+        String str1 = " hello world hello bit ";
+        String str2 = "hello world hello bit";
+        String str3 = "HELLO";
+        //去掉左右空格
+        System.out.println(str1.trim());
+        //字符串转大小写
+        System.out.println(str2.toUpperCase());
+        System.out.println(str3.toLowerCase());
+    }
+}                                         
