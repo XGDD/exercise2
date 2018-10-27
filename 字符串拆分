@@ -1,0 +1,15 @@
+public class Test{
+    public static void main(String[] args){
+        String str1 = "hello world hello bit";
+        //按照指定格式将字符串全部拆分（按照空格拆分）
+        String[] result = str1.split(" ");
+        for(String i: result){
+            System.out.println(i);
+        }
+        //按照指定格式将字符串部分拆分，长度为limt（拆分成几个字符串）
+        String[] data = str1.split(" ", 2);
+        for(String j: data){
+            System.out.println(j);
+        }
+    }
+}                                         
