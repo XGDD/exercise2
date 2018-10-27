@@ -1,0 +1,7 @@
+public class Test{
+    public static void main(String[] args){
+        StringBuffer sb = new StringBuffer("helloworld");
+        //sb.append("helloworld");
+        System.out.println(sb.insert(5,"你好"));
+    }         
+}                                
