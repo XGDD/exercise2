@@ -1,0 +1,16 @@
+package www.bit.java.util;
+public class Message{
+    public void print(){
+        System.out.println("[Message] Hello package");
+    }
+}
+
+
+package www.bit.java.test;
+import www.bit.java.util.Message;
+public class Test{
+    public static void main(String[] args){
+        Message msg = new Message();
+        msg.print();
+    }
+}
