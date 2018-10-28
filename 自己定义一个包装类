@@ -1,0 +1,17 @@
+class IntDemo{
+    private int num;
+    public IntDemo(int num){
+        this.num = num;
+    }
+    public int intValue(){
+        return this.num;
+    }
+}
+public class Test{
+    public static void main(String[] args){
+        Object obj = new IntDemo(10);
+        //向下转型
+        IntDemo temp = (IntDemo) obj;
+        System.out.println(temp.intValue());
+    }
+}
