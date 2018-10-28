@@ -1,0 +1,10 @@
+public class Test{
+    public static void main(String[] args){
+        //将字符换变为int类型
+        String str = "123";
+        int num1 = Integer.parseInt(str);
+        //将字符串转为double类型
+        double num2 = Double.parseDouble(str);
+        System.out.println(num2);
+    }
+}
