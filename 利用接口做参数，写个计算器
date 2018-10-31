@@ -1,0 +1,38 @@
+interface Compute{
+    int computer(int n, int m);
+}
+class AddImpl implements Compute{
+    public int computer(int n, int m){
+        return n + m;
+    }
+}
+class SubImpl implements Compute{
+    public int computer(int n, int m){
+        return n - m;
+    }
+}
+class MulImpl implements Compute{
+    public int computer(int n, int m){
+        return n * m;
+    }
+}
+class DivImpl implements Compute{
+    public int computer(int n, int m){
+        return n / m;
+    }
+}
+class UseCompute{
+    public void useCom(Compute com, int one, int two){
+        int ret = com.computer(one, two);
+        System.out.println(ret);
+    }
+}
+public class Test{
+    public static void main(String[] args){
+        UseCompute usecompute = new UseCompute();
+        usecompute.useCom(new AddImpl(), 2, 4);
+        usecompute.useCom(new SubImpl(), 2, 4);
+        usecompute.useCom(new MulImpl(), 2, 4);
+        usecompute.useCom(new DivImpl(), 2, 4);
+    }
+}
