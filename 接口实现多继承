@@ -1,0 +1,26 @@
+interface A{
+    public static final double PI = 3.14;
+    public abstract double area();
+}
+interface B{
+    public abstract void setColor(String c);
+}
+interface C extends A, B{
+    public abstract void volume();
+}
+class Cylinder implements C{
+    public int radius;
+    public int height;
+    public String color;
+    public double area(){
+        return PI;
+    }
+    public void setColor(String c){}
+    public void volume(){}
+}
+public class Test{
+    public static void main(String[] args){
+        Cylinder cylinder = new Cylinder();
+        cylinder.area();
+    }
+}
