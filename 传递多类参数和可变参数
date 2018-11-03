@@ -1,0 +1,13 @@
+public class Test{
+    public static void main(String[] args){
+        System.out.println(add("hello", 1,2,3,4));
+        System.out.println(add("hello", new int[]{1,4,6,7,9}));
+    }
+    public static int add(String msg, int ... data){
+        int result = 0;
+        for(int i : data){
+            result += i;
+        }
+        return result;
+    }
+}
