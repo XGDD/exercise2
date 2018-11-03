@@ -1,0 +1,44 @@
+package www.java.test;
+
+class Point{
+    private Object x;
+    private Object y;
+
+    public void setX(Object x) {
+        this.x = x;
+    }
+
+    public void setY(Object y) {
+        this.y = y;
+    }
+
+    public Object getX() {
+
+        return x;
+    }
+
+    public Object getY() {
+        return y;
+    }
+}
+
+public class Test{
+    public static void main(String[] args){
+//        //设置整型数据
+//        Point p = new Point();
+//        p.setX(10);//自动装箱并自动向上转型为Object
+//        p.setY(20);
+//        int x = (Integer) p.getX();//强制向下转型为Integer并自动拆箱
+//        int y = (Integer) p.getY();
+//        System.out.println(x);
+//        System.out.println(y);
+        //设置字符串数据
+        Point p = new Point();
+        p.setY("北纬30度");
+        p.setX("东京10度");
+        String s1 = (String) p.getX();
+        String s2 = (String) p.getY();
+        System.out.println(s1);
+        System.out.println(s2);
+    }
+}
