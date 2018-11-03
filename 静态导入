@@ -1,0 +1,12 @@
+package www.java.test;
+
+import www.java.util.MyMath;
+
+import java.sql.SQLOutput;
+
+public class Test {
+    public static void main(String[] args){
+        System.out.println(MyMath.add(2,3));
+        System.out.println(MyMath.mul(2,3));
+    }
+}
