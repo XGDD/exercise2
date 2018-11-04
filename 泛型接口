@@ -1,0 +1,29 @@
+package www.java.test;
+
+import com.sun.xml.internal.messaging.saaj.soap.MessageImpl;
+
+interface IMessage <T> {
+    public void print(T t);
+}
+
+//子类继承保留泛型
+//class MessageImpl<T> implements IMessage<T>{//在接口上定义了泛型
+//    public void print(T t){
+//        System.out.println(t);
+//    }
+//}
+
+
+
+//子类定义时确定好类型
+class MessageImp implements IMessage<String>{
+    public void print(String t){
+        System.out.println(t);
+    }
+}
+public class Test{
+    public static void main(String[] args){
+        IMessage <String> msg = new MessageImp();
+        msg.print("hello bit");
+    }
+}
