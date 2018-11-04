@@ -1,0 +1,26 @@
+package www.java.test;
+
+class Message<T>{
+    private T messsage;
+
+    public void setMesssage(T messsage) {
+        this.messsage = messsage;
+    }
+
+    public T getMesssage() {
+
+        return messsage;
+    }
+
+    public void test(T t){
+        System.out.println(t);
+    }
+}
+
+public class Test{
+    public static void main(String[] args){
+        Message <String> message1 = new Message<>();
+        Message <Integer> message2 = new Message<>();
+        System.out.println(message1.getClass() == message2.getClass());
+    }
+}
