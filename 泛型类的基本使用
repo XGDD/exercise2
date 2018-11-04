@@ -1,0 +1,55 @@
+package www.java.test;
+
+class Point <T> {
+    private T value1;
+    private T value2;
+
+    public void setValue1(T value1) {
+        this.value1 = value1;
+    }
+
+    public void setValue2(T value2) {
+        this.value2 = value2;
+    }
+
+    public T getValue1() {
+
+        return value1;
+    }
+
+    public T getValue2() {
+        return value2;
+    }
+}
+
+public class Test{
+    public static void main(String[] args){
+//        //设置整型数据
+//        Point <Integer> p = new Point<>();
+//        p.setValue1(10);
+//        p.setValue2(20);
+//       //取出数据
+//        int x = p.getValue1(); //避免了向下转型
+//        int y = p.getValue2();
+//        System.out.println(x);
+//        System.out.println(y);
+
+//        //设置浮点型数据
+//        Point <Double> p = new Point<>();
+//        p.setValue1(10.0);
+//        p.setValue2(12.0);
+//        double x = p.getValue1();
+//        double y = p.getValue2();
+//        System.out.println(x);
+//        System.out.println(y);
+        
+        //设置字符串数据
+        Point <String> p = new Point<>();
+        p.setValue1("hello");
+        p.setValue2("world");
+        String x = p.getValue1();
+        String y = p.getValue2();
+        System.out.println(x);
+        System.out.println(y);
+    }
+}
