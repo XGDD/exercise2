@@ -1,0 +1,27 @@
+package www.java.test;
+
+class Message <T> {
+    private T message;
+
+    public void setMessage(T message) {
+        this.message = message;
+    }
+
+    public T getMessage() {
+
+        return message;
+    }
+}
+
+public class Test{
+    public static void main(String[] args){
+        Message <String> s = new Message();
+        s.setMessage("hello");
+        fun(s);
+    }
+    //此时可以修改，此时只能取得String类及其父类Object类
+    public static void fun(Message<? super String> temp){//设置下限，只能用于方法中
+        temp.setMessage("bit");
+        System.out.println(temp.getMessage());
+    }
+}
