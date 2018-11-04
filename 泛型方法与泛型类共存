@@ -1,0 +1,17 @@
+class MyClass <T> {
+    public void test1(T t){
+        System.out.println(t);
+    }
+    public <T> T test2(T t){
+        return t;
+    }
+}
+
+public class Test{
+    public static void main(String[] args){
+        MyClass <String> myclass = new MyClass<>();
+        myclass.test1("hello");
+        Integer i = myclass.test2(100);
+        System.out.println(i);
+    }
+}
