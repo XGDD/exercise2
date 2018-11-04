@@ -1,0 +1,29 @@
+package www.java.test;
+
+class Message <T> {
+    private T message;
+
+    public void setMessage(T message) {
+        this.message = message;
+    }
+
+    public T getMessage() {
+
+        return message;
+    }
+}
+
+public class Test{
+    public static void main(String[] args){
+        //Message <String> s = new Message();
+        //s.setMessage("hello");
+        Message <Integer> s = new Message<>();//这的类型改变之后fun函数中的可以不用改
+        s.setMessage(20);
+        fun(s);
+    }
+    //此时使用的是通配符？，描述的是可以接收任意类型，但不知道具体类型，不能修改
+    public static void fun(Message<?> temp){
+        //temp.setMessage(100);error 无法修改
+        System.out.println(temp.getMessage());
+    }
+}
