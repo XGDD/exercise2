@@ -1,0 +1,53 @@
+package www.java.test;
+
+import com.sun.org.apache.xpath.internal.operations.Div;
+
+class MulException extends Exception{
+    public MulException(String msg){
+        super(msg);
+    }
+}
+
+public class Test{
+    public static void main(String[] args)throws Exception{
+        fun(10, 10);
+    }
+    public static int fun(int x, int y){
+        try{
+            if(x * y == 100){
+                throw new MulException("错误的相乘操作");
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return x*y;
+    }
+}
+
+
+
+
+
+
+
+package www.java.test;
+
+import com.sun.org.apache.xpath.internal.operations.Div;
+
+class DivException extends RuntimeException{
+    public DivException(String msg){
+        super(msg);
+    }
+}
+
+public class Test{
+    public static void main(String[] args)throws Exception{
+        fun(10, 5);
+    }
+    public static int fun(int x, int y){
+        if(x / y == 2){
+            throw new DivException("错误的相除操作");
+        }
+        return x/y;
+    }
+}
