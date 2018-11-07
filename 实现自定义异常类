@@ -1,0 +1,36 @@
+package www.java.test;
+
+class MulException extends Exception{
+    public MulException(String msg){
+        super(msg);
+    }
+}
+
+public class Test{
+    public static void main(String[] args)throws Exception{
+        int x = 10;
+        int y = 10;
+        if(x * y == 100){
+            throw new MulException("错误的相乘操作");
+        }
+    }
+}
+
+
+package www.java.test;
+
+class DivException extends RuntimeException{
+    public DivException(String msg){
+        super(msg);
+    }
+}
+
+public class Test{
+    public static void main(String[] args)throws Exception{
+        int x = 4;
+        int y = 2;
+        if(x / y == 2){
+            throw new DivException("错误的相除操作");
+        }
+    }
+}
