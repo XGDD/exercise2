@@ -1,0 +1,30 @@
+package www.java.test;
+
+class Person{
+    private static Person per;
+    private String name;
+    private int age;
+    private int salary;
+
+    private Person(){
+
+    }
+
+    public static Person getPer() {
+        if(per == null){
+            per = new Person();
+        }
+        return per;
+    }
+
+    public void print(){
+        System.out.println("hello world");
+    }
+}
+
+public class Test{
+    public static void main(String[] args){
+        Person p = Person.getPer();
+        p.print();
+    }
+}
