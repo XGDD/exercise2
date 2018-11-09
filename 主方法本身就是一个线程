@@ -1,0 +1,16 @@
+class MyThread implements Runnable {//线程主体类
+    @Override
+    public void run(){
+        for(int i = 0; i < 10; i++){
+            System.out.println("线程名称:"+Thread.currentThread().getName());
+        }
+    }
+}
+
+public class Test{
+    public static void main(String[] args){
+        MyThread mt = new MyThread();
+        mt.run();//并没有显式的创建一个线程
+        new Thread(mt).start();//新建一个没有线程名的线程
+    }
+}
