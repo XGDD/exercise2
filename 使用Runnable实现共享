@@ -1,0 +1,18 @@
+class MyThread implements Runnable{//线程主体类
+    private int ticket = 10;//一共10张票
+    @Override
+    public void run(){//所有线程从此处开始运行
+        while(ticket > 0){
+            System.out.println("剩余票数："+this.ticket--);
+        }
+    }
+}
+
+public class Test{
+    public static void main(String[] args){
+        MyThread mt = new MyThread();
+        new Thread(mt).start();
+        new Thread(mt).start();
+        new Thread(mt).start();
+    }
+}
