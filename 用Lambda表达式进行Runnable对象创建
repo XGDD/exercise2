@@ -1,0 +1,6 @@
+public class Test{
+    public static void main(String[] args){
+        Runnable runnable = ()-> System.out.println("hello world");
+        new Thread(runnable).start();
+    }
+}
