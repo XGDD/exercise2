@@ -1,0 +1,35 @@
+class MyThread implements Runnable{
+    @Override
+    public void run(){
+        try{
+            System.out.println("主线程休眠前的时间");
+            Test.printTime();
+            Thread.sleep(2000);
+            System.out.println(Thread.currentThread().getName());
+            System.out.println("睡眠时间结束");
+            Test.printTime();
+        }catch(InterruptedException e){
+            e.printStackTrace();
+        }
+    }
+}
+public class Test{
+    public static void main(String[] args){
+        MyThread mt = new MyThread();
+        Thread thread = new Thread(mt, "子线程A");
+        thread.start();
+        System.out.println(Thread.currentThread().getName());
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("代码结束");
+    }
+    public static void printTime(){
+        Date date = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd HH-mm-ss");
+        String time = dateFormat.format(date);
+        System.out.println(time);
+    }
+}
