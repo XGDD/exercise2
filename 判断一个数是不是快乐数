@@ -1,0 +1,29 @@
+public class Test{
+    public boolean isHappy(int num){
+        while(true){
+            int flag = getNext(num);
+            if(flag == 1){
+                return true;
+            }else{
+                num = flag;
+                if(num == 89){
+                    return false;
+                }
+            }
+        }
+    }
+    public int getNext(int num){
+        int result = 0;
+        result = result + (num%10)*(num%10); 
+        num = num / 10;
+        if(num == 0){
+            return result;
+        }else{
+            return result + getNext(num);
+        }
+    }
+    public static void main(String[] args){
+        Test m = new Test();
+        System.out.println(m.isHappy(19));
+    }
+}
