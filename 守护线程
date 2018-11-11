@@ -1,0 +1,34 @@
+class A implements Runnable{
+    private int i;
+    @Override
+    public void run(){
+        try {
+            while (true) {
+                i++;
+                System.out.println("线程名称：" + Thread.currentThread().getName() + ", i = " + i +
+                        ",是否为守护线程：" + Thread.currentThread().isDaemon());
+                Thread.sleep(1000);
+            }
+        }catch(InterruptedException e){
+            System.out.println("线程名称："+Thread.currentThread().getName()+"中断线程了");
+            //return;
+        }
+    }
+}
+public class Test{
+    public static void main(String[] args) throws InterruptedException{
+        Thread thread1 = new Thread(new A(),"子线程A");
+        //把A设置为守护线程，一定是在start之前
+        thread1.setDaemon(true);
+        thread1.start();
+
+        Thread thread2 = new Thread(new A(),"子线程B");
+        thread2.start();
+        Thread.sleep(3000);
+
+        //中断非守护线程
+        thread2.interrupt();
+        Thread.sleep(3000);
+        System.out.println("代码结束");
+    }
+}
