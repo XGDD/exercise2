@@ -1,0 +1,19 @@
+public class Test{
+    public static void main(String[] args){
+        String s = "111hello the he world";
+        System.out.println(solution(s));
+    }
+    public static char solution(String s){
+        char[] data = s.toCharArray();
+        char[] temp = new char[256];
+        for(int i = 0; i < data.length; i++){
+            if(((data[i] > 'a') && (data[i] < 'z')) || ((data[i] > 'A') && (data[i] < 'Z'))){//排除空格数字等情况
+                temp[data[i]]++;
+            if(temp[data[i]] == 3){
+                return data[i];
+            }
+            }
+        }
+        return '0';
+    }
+}
