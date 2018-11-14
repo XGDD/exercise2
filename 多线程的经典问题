@@ -1,0 +1,38 @@
+class Sync{
+    //线程1进入testA，线程1仍在进行
+    public synchronized void testA(){//若把这个synchronized删掉，则testA和testB各执行各的
+        if(Thread.currentThread().getName().equals("A")){
+            while(true){
+
+            }
+        }
+    }
+    //线程2能否同时进入testB,        不能  因为A锁的是sync对象，不是代码块
+    public synchronized void testB(){
+        if(Thread.currentThread().getName().equals("B")){
+            System.out.println("线程B打印此方法");
+        }
+    }
+}
+class MyThread implements Runnable{
+    private Sync sync;
+    public MyThread(Sync sync){
+        this.sync = sync;
+    }
+    @Override
+    public void run(){
+        this.sync.testA();
+        this.sync.testB();
+    }
+}
+public class Test{
+    public static void main(String[] args) throws InterruptedException {
+        Sync sync = new Sync();
+        MyThread mt = new MyThread(sync);
+        Thread threadA = new Thread(mt,"A");
+        Thread threadB = new Thread(mt,"B");
+        threadA.start();//threadA应该执行testA和testB，但是A线程，testB函数是进不去的，其实它也是执行了this.sync.testB这句的
+        Thread.sleep(1000);
+        threadB.start();//如果testA和testB都没加锁，testA和testB应该执行两遍的？但每个函数都有个if语句，所以一次实际也是执行了1个
+    }
+}
