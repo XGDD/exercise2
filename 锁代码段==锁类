@@ -1,0 +1,41 @@
+class Sync {
+    //把底下代码段锁住了，相当于锁的是类
+    public static synchronized void TestA() {
+        System.out.println(Thread.currentThread().getName() + "方法开始");
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(Thread.currentThread().getName() + "方法结束");
+    /*public void TestA(){
+        synchronized (Sync.class){
+            System.out.println(Thread.currentThread().getName()+"方法开始");
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(Thread.currentThread().getName()+"方法结束");
+        }
+    }*/
+    }
+}
+class MyThread implements Runnable{
+    @Override
+    public void run(){
+        Sync sync = new Sync();
+        //sync1,线程0
+        //sync2,线程1
+        //sync3,线程2，3个对象
+        sync.TestA();
+    }
+}
+public class Test{
+    public static void main(String[] args){
+        MyThread mt = new MyThread();
+        for(int i = 0; i < 3; i++){
+            new Thread(mt,"线程"+i).start();
+        }
+    }
+}
