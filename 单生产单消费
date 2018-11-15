@@ -1,0 +1,76 @@
+class Goods{
+    private String goodsName;
+    private int count;
+    //生产商品方法
+    public synchronized void set(String goodsName){
+        if(count > 0){
+            System.out.println("商品还有库存..");
+            try {
+                wait();//还有库存，所以等待，不生产
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        this.goodsName = goodsName;
+        this.count++;
+        System.out.println(Thread.currentThread().getName()+"生产"+goodsName+toString());
+        //唤醒等待消费的线程
+        notify();
+    }
+    //消费商品方法
+    public synchronized void get() throws InterruptedException {
+        if(count == 0){
+            System.out.println("商品卖完了，等一会...");
+            wait();
+        }
+        this.count--;
+        System.out.println(Thread.currentThread().getName()+"消费"+goodsName+toString());
+        //唤醒生产者继续生产
+        notify();
+    }
+
+    @Override
+    public String toString() {
+        return "Goods{" +
+                "goodsName='" + goodsName + '\'' +
+                ", count=" + count +
+                '}';
+    }
+}
+//生产者类
+class Producer implements Runnable{
+    private Goods goods;
+
+    public Producer(Goods goods) {
+        this.goods = goods;
+    }
+    @Override
+    public void run(){
+        this.goods.set("纪梵希口红");
+    }
+}
+//消费者类
+class Consumer implements Runnable{
+    private Goods goods;
+
+    public Consumer(Goods goods) {
+        this.goods = goods;
+    }
+    @Override
+    public void run(){
+        try {
+            this.goods.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+public class Test{
+    public static void main(String[] args){
+        Goods goods = new Goods();
+        Thread producerThread = new Thread(new Producer(goods),"生产线程");
+        Thread consumerThread = new Thread(new Consumer(goods),"消费者线程");
+        producerThread.start();
+        consumerThread.start();
+    }
+}
