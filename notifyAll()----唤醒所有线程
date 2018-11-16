@@ -1,0 +1,61 @@
+public class Test{
+    public static void main(String[] args){
+        test();
+        test1();
+    }
+    public static synchronized void test(){//锁的是Test类对象
+        System.out.println("hello world");
+    }
+    public static synchronized void test1(){
+        System.out.println("hello world");
+    }
+}
+
+class MyThread implements Runnable{
+    //锁定对象
+    private Object object;
+    private boolean flag;
+    public MyThread(Object object,boolean flag){
+        this.flag = flag;
+        this.object = object;
+    }
+    public void waitMethod(){
+        synchronized (object){
+            System.out.println("wait方法开始..."+Thread.currentThread().getName());
+            try {
+                object.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("wait方法结束..."+Thread.currentThread().getName());
+        }
+    }
+    public void notifyMethod(){
+        synchronized (object){
+            System.out.println("notify方法开始..."+Thread.currentThread().getName());
+            object.notifyAll();
+            System.out.println("notify方法结束..."+Thread.currentThread().getName());
+        }
+    }
+    @Override
+    public void run(){
+        if(flag){
+            waitMethod();
+        }else{
+            notifyMethod();
+        }
+    }
+}
+public class Test{
+    public static void main(String[] args){
+        Object object = new Object();
+        for(int i = 0; i < 10; i++){
+            MyThread myThread1 = new MyThread(object,true);
+            Thread mt = new Thread(myThread1,"等待线程"+i);
+            mt.start();
+        }
+        MyThread myThread2 = new MyThread(object,false);
+        Thread mt = new Thread(myThread2,"唤醒线程");
+        mt.start();
+    }
+}
