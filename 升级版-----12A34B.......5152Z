@@ -1,0 +1,50 @@
+class Print{
+    int flag = 1;
+    int count = 1;
+    public synchronized void printNum(){
+        //当flag不是1的时候，打印字母
+        while(flag != 1){//为了防止数字连续超过2个出现
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.print(2*count - 1);
+        System.out.print(2*count);
+        flag = 2;
+        notify();
+    }
+    public synchronized void printChar(){
+        //当flag不是2的时候，打印数字
+        while(flag != 2){
+            try {
+                wait();//让当前线程等待，然后去执行打印数字的线程
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.print((char)(count-1+'A'));
+        //继续前行
+        count++;
+        flag = 1;
+        notify();
+    }
+}
+public class Test{
+    public static void main(String[] args){
+        Print print = new Print();
+        new Thread(()->{//new了两个Thread，会有两个run，各自进各自的，但锁的是print这个对象，只要一个，所以要竞争，
+                       // 谁竞争到了就算谁的，是在run里循环了26次，循环第1次的时候，当print..函数执行完，会自动释放
+                      //print这个对象锁，两个线程再同时去竞争
+            for(int i = 0; i < 26; i++){
+                print.printNum();
+            }
+        }).start();
+        new Thread(()->{//这个覆写的是run方法
+            for(int i = 0; i < 26; i++){
+                print.printChar();
+            }
+        }).start();
+    }
+}
