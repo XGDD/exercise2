@@ -1,0 +1,77 @@
+class Print{
+    private int num = 1;
+    private char c = 'A';
+
+    public synchronized void print1(){
+        while(num <= 52){
+            int i = 0;
+            while(i < 2){
+                System.out.print(num);
+                i++;
+                num++;
+            }
+            try {
+                notify();
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            //notify();
+        }
+    }
+    public synchronized void print2(){
+        while(c <= 'Z'){
+            int i = 0;
+            while(i < 1){
+                System.out.print(c);
+                i++;
+                c++;
+            }
+            try {
+                notify();
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            //notify();
+        }
+    }
+}
+
+class Num implements Runnable{
+    private Print print;
+
+    public Num(Print print) {
+        this.print = print;
+    }
+
+    @Override
+    public void run(){
+        print.print1();
+    }
+}
+class Vor implements Runnable
+{
+    private Print print;
+
+    public Vor(Print print) {
+        this.print = print;
+    }
+
+    @Override
+    public void run(){
+        print.print2();
+    }
+}
+public class Test{
+    public static void main(String[] args) throws InterruptedException {
+        Print print = new Print();
+        Num num = new Num(print);
+        Vor vor = new Vor(print);
+        Thread thread1 = new Thread(num,"数字线程");
+        Thread thread2 = new Thread(vor,"字母线程");
+        thread1.start();
+        Thread.sleep(200);
+        thread2.start();
+    }
+}
