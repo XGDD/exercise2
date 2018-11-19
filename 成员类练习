@@ -1,0 +1,24 @@
+public class OuterOne{
+    private int x = 3;
+    InnerOne ino = new InnerOne();
+    public class InnerOne {
+        private int y = 5;
+
+        public void innerMethod() {
+            System.out.println("y is " + y);
+        }
+
+        public void innerMethod2() {
+            System.out.println("x2 is " + x);
+        }
+    }
+    public void OuterMethod(){
+        System.out.println("x is "+x);
+        ino.innerMethod();
+        ino.innerMethod2(); 
+    }
+    public static void main(String[] args){
+        OuterOne my = new OuterOne();
+        my.OuterMethod();
+    }
+}
