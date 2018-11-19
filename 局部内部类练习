@@ -1,0 +1,15 @@
+public class Testpart{
+  public static void main(String[] args){
+    final int i = 8;
+    class person{
+    public String name;
+    public void show(){
+    System.out.println(i);
+    System.out.println(this.name);
+    }
+    }
+    person p = new person();
+    p.name = "Zhangbei";
+    p.show();
+  }
+}
