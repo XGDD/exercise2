@@ -1,0 +1,27 @@
+class Solution {
+    public boolean isPalindrome(int x) {
+        if(x < 0 || x >= 2147483647){//如果溢出也返回false
+            return false;
+        }
+        int result = 0;
+        int m = 0;
+        int y = x;
+        int i = 0;
+        int[] arr = new int[22];
+        while(x != 0){
+            m = x % 10;
+            arr[i] = m;
+            i++;
+            x = x / 10;
+        }
+        int n = i;//用n把i记录下来，如果用j<i，下边有i--，i值变了，数组遍历不完，result是不正确的
+        for(int j = 0; j < n; j++){
+            result += arr[j] * Math.pow(10.0, --i);
+        }
+        if(y == result){
+            return true;
+        }else{
+            return false;
+        }
+    }
+}
