@@ -1,0 +1,12 @@
+public class Test{
+    public static void main(String[] args){
+        int i = 111;
+        String str = new String(i+" ");
+        System.out.println(i+"二进制="+Integer.toBinaryString(i)+"八进制="+Integer.toOctalString(i)+"十六进制="+Integer.toHexString(i));
+        System.out.println("本类名="+str.getClass().getName()+
+        "超类名="+str.getClass().getSuperclass().getName()+
+        "包名="+str.getClass().getPackage().getName());
+        System.out.println("操作系统="+System.getProperty("os.name")+
+        "\n"+"Java版本="+System.getProperty("java.vm.version"));
+    }
+}
