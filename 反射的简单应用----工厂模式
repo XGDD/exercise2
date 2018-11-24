@@ -1,0 +1,39 @@
+interface IFruit{
+    void eat();
+}
+class Apple implements IFruit{
+
+    @Override
+    public void eat() {
+        System.out.println("eat an apple");
+    }
+}
+class Pear implements IFruit{
+
+    @Override
+    public void eat() {
+        System.out.println("eat a pear");
+    }
+}
+class Factory{
+    private Factory(){}
+    // 工厂方法模式
+    public static IFruit getInstance(String className){
+        IFruit fruit = null;
+        try{
+            // 取得任意子类反射对象
+            Class<?> cls = Class.forName(className);
+            // 通过反射提供实例化对象
+            fruit = (IFruit) cls.newInstance();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return fruit;
+    }
+}
+public class Test{
+    public static void main(String[] args){
+        IFruit fruit = Factory.getInstance("www.java.test.Apple");
+        fruit.eat();
+    }
+}
