@@ -1,0 +1,42 @@
+public class BoundedQueue<T> {
+    private Object[] items;
+    // 队列中当前元素个数
+    private int count;
+    private Lock lock = new ReentrantLock();
+    private Condition full = lock.newCondition();
+    private Condition empty = lock.newCondition();
+    public BoundedQueue(int size){
+        items = new Object[szie];
+    }
+    // 添加元素方法，如果当前队列已满，则添加线程进入等待状态，直到有空位被唤醒
+    public void add(T t, int addIndex) throws InterruptedException{
+        lock.lock();
+        try{
+            // 当前队列已满，添加线程进入等待队列
+            while(count == items.length){
+                full.await();
+            }
+            items[addIndex] = t;
+            count++;
+            empty.signalAll();
+        }finally{
+            lock.unlock();
+        }
+    }
+    // 删除元素方法，如果当前队列为空，则移除线程进入等待状态，直到队列不为空才被唤醒
+    public T Remove(int removeInex) throws InterruptedException{
+        lock.lock();
+        try{
+            // 当队列为空时，移除队列进入等待队列
+            while(count == 0){
+                empty.await();
+            }
+            Object x = items[removeInex];
+            count--;
+            full.signalAll();
+            return (T) x;
+        }finally{
+            lock.unlock();
+        }
+    }
+}
