@@ -1,0 +1,122 @@
+class Goods{
+    private String name;
+    private int count;
+    // 商品最大数量
+    private int maxCount;
+
+    public Goods(int maxCount) {
+        this.maxCount = maxCount;
+    }
+    private Lock lock = new ReentrantLock();
+    private Condition consumer = lock.newCondition();
+    private Condition producer = lock.newCondition();
+    /**
+     *  生产方法
+     */
+    public void setGoods(String name){
+        lock.lock();
+        try {
+            // 当商品数量达到上限后，进行等待，不再生产
+            while(this.count == maxCount){
+                System.out.println(Thread.currentThread().getName()+"商品已达到上限，请等消费者消费");
+                try {
+                    producer.await();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            // 生产商品
+            this.name = name;
+            count++;
+            System.out.println(Thread.currentThread().getName()+"生产"+toString());
+            // 唤醒消费者线程
+            consumer.signalAll();
+        }finally{
+            lock.unlock();
+        }
+    }
+
+    /**
+     * 消费方法
+     * @return
+     */
+    public void getGoods(){
+        lock.lock();
+        try{
+            // 当没有产品的时候，消费者进行等待
+            while(this.count == 0){
+                System.out.println(Thread.currentThread().getName()+"商品售完了，请等会");
+                consumer.await();
+            }
+            // 消费产品
+            count--;
+            System.out.println(Thread.currentThread().getName()+"消费"+toString());
+            // 唤醒生产者线程
+            producer.signalAll();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally{
+            lock.unlock();
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Goods{" +
+                "name='" + name + '\'' +
+                ", count=" + count +
+                '}';
+    }
+}
+
+class Consumer implements Runnable{
+    private Goods goods;
+
+    public Consumer(Goods goods) {
+        this.goods = goods;
+    }
+
+    @Override
+    public void run(){
+        while(true){
+            this.goods.getGoods();
+        }
+    }
+}
+
+class Producer implements Runnable{
+    private Goods goods;
+
+    public Producer(Goods goods) {
+        this.goods = goods;
+    }
+
+    @Override
+    public void run(){
+        while(true){
+            this.goods.setGoods("阿玛尼口红");
+        }
+    }
+}
+
+public class Test{
+    public static void main(String[] args){
+        List<Thread> list = new ArrayList<>();
+        Goods goods = new Goods(10);
+        Producer producer = new Producer(goods);
+        Consumer consumer = new Consumer(goods);
+        // 创建10个消费者线程
+        for(int i = 0; i < 10; i++){
+            Thread thread = new Thread(consumer,"消费者"+i);
+            list.add(thread);
+        }
+        // 创建5个生产者线程
+        for(int i = 0; i < 5; i++){
+            Thread thread = new Thread(producer,"生产者"+i);
+            list.add(thread);
+        }
+        for(Thread th : list){
+            th.start();
+        }
+    }
+}
