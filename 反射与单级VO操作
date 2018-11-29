@@ -1,0 +1,111 @@
+package www.java;
+
+import java.lang.reflect.InvocationTargetException;
+
+public class EmpAction {
+    private Emp emp = new Emp();
+    public void setValue(String value) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        BeanOperation.setBeanValue(this, value);
+    }
+    public Emp getEmp(){
+        return emp;
+    }
+}
+
+
+
+package www.java;
+
+public class Emp {
+    private String name;
+    private String job;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getJob() {
+        return job;
+    }
+
+    public void setJob(String job) {
+        this.job = job;
+    }
+
+    @Override
+    public String toString() {
+        return "Emp{" +
+                "name='" + name + '\'' +
+                ", job='" + job + '\'' +
+                '}';
+    }
+}
+
+
+
+
+package www.java;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+/**
+ * 本类主要负责实现自动的VO匹配处理操作
+ * emp.name:yuisama|emp.job:java coder
+ */
+public class BeanOperation {
+    private BeanOperation(){}
+    public static void setBeanValue(Object actionObject, String msg) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        String[] result = msg.split("\\|");
+        for(int i = 0; i < result.length; i++){
+            String[] temp = result[i].split(":");
+            //属性名称"emp.name"
+            String realClassName = temp[0].split("\\.")[0];
+            String attrName = temp[0].split("\\.")[1];
+            //属性内容
+            String value = temp[1];
+            //通过反射取得xxAction中的真实对象
+            //取得emp对象
+            Object realObj = getRealObject(actionObject, realClassName);
+            // 调用Emp类的setter方法
+            setObjectValue(realObj, value, attrName);
+        }
+    }
+    //取得真实类对象
+    public static Object getRealObject(Object actionObject, String realClassName) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        Object realObj = null;
+        Class<?> cls = actionObject.getClass();
+        String methodName = "get" + initCap(realClassName);
+        Method method = cls.getMethod(methodName);
+        realObj = method.invoke(actionObject);
+        return realObj;
+    }
+
+    public static void setObjectValue(Object realObj, String value, String attrName) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        Class<?> cls = realObj.getClass();
+        String methodName = "set" + initCap(attrName);
+        Method method = cls.getMethod(methodName, String.class);//在这为什么要传String的Class对象，
+                                                               // 而上边不用，是因为set里要传参数，我们要根据参数类型
+                                                              //来确定调用哪个函数
+        method.invoke(realObj, value);
+    }
+
+    public static String initCap(String str){
+        return str.substring(0,1).toUpperCase()+str.substring(1);
+    }
+}
+
+
+
+public class Test{
+    public static void main(String[] args) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        EmpAction empAction = new EmpAction();
+        String value="emp.name:pick|emp.job:cooker";
+        empAction.setValue(value);
+        System.out.println(empAction.getEmp());
+    }
+}
