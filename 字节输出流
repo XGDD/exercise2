@@ -1,0 +1,19 @@
+public class Test{
+    public static void main(String[] args) throws IOException {
+        //1.取得file对象
+        File file = new File("C:"+File.separator+"Users"+File.separator+"Calm"+File.separator
+        +"Desktop"+File.separator+"Test.txt");
+        OutputStream out = null;
+        //2.取得终端对象的输出流
+        out = new FileOutputStream(file);
+        //3.进行数据的输出
+        String msg = "哈哈哈\r\n";
+        try {
+            out.write(msg.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally{
+            out.close();
+        }
+    }
+}
