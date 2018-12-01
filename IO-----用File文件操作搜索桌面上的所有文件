@@ -1,0 +1,22 @@
+public class Test{
+    public static void main(String[] args){
+        //取得file对象
+        File file = new File("C:"+File.separator+"Users"+File.separator+"Calm"+File.separator
+        +"Desktop");
+        long start = System.currentTimeMillis();
+        listAllFiles(file);
+        long end = System.currentTimeMillis();
+        System.out.println("遍历结束，共耗时"+(end-start));
+    }
+    public static void listAllFiles(File file){
+        if(file.exists() && file.isFile()){
+            System.out.println(file);
+        }else{
+            //此时file对象为路径
+            File[] files = file.listFiles();//列举一个目录的全部组成
+            for(File file1 : files){
+                listAllFiles(file1);
+            }
+        }
+    }
+}
