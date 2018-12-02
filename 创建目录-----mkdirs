@@ -1,0 +1,19 @@
+public class Test{
+    public static void main(String[] args){
+        File file = new File("C:"+File.separator+"Users"+File.separator+"Calm"+
+                File.separator+"Desktop"+File.separator+"www"+File.separator+"bit"+
+                File.separator+"java"+File.separator+"Test.txt");
+        if(!file.getParentFile().exists()){//创建父目录
+            file.mkdirs();//有多少级父目录就能创建多少级
+        }
+        if(!file.exists()){//文件不存在，则创建文件
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else{
+            file.delete();
+        }
+    }
+}
