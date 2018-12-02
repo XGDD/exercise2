@@ -1,0 +1,20 @@
+public class Test{
+    public static void main(String[] args) throws IOException {
+        //1.取得file对象
+        File file = new File("C:" + File.separator + "Users" + File.separator + "Calm" + File.separator
+                + "Desktop" + File.separator + "Test.txt");
+        InputStream in = null;
+        if (file.exists()) {//必须保证文件存在
+            //2.取得终端对象的输入流
+            in = new FileInputStream(file);
+            byte[] data = new byte[1024];//每次可以读取的最大数量
+            //3.进行数据的输入
+            int len = in.read(data);//此时的字节数组内容读取到了data数组中
+            String result = new String(data, 0, len);//将字节数组转为String
+            System.out.println(len);
+            System.out.println(result);
+            //4.关闭流
+            in.close();
+        }
+    }
+}
