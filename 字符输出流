@@ -1,0 +1,16 @@
+public class Test{
+    public static void main(String[] args) throws IOException {
+        //1.取得file对象
+        File file = new File("C:" + File.separator + "Users" + File.separator + "Calm" + File.separator
+                + "Desktop" + File.separator + "Test.txt");
+        if (file.exists()) {//必须保证文件存在
+            //2.取得终端对象的输出流
+            Writer out = new FileWriter(file);
+            //3.进行数据的输出
+            String msg = "哇哈哈";
+            out.write(msg);
+            //4.关闭流
+            out.close();
+        }
+    }
+}
