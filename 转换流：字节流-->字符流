@@ -1,0 +1,18 @@
+package www.java.test;
+
+import java.io.*;
+
+public class Test{
+    public static void main(String[] args) throws Exception{
+        File file = new File("C:"+File.separator+"Users"+File.separator+"Calm"+
+                File.separator+"Desktop"+File.separator+"Test.txt");
+        if(!file.getParentFile().exists()){//必须保证父目录存在
+            file.getParentFile().mkdirs();//创建多级父目录
+        }
+        OutputStream outPut = new FileOutputStream(file);
+        Writer out = new OutputStreamWriter(outPut);
+        String msg = "你好 比特";
+        out.write(msg);
+        out.close();
+    }
+}
