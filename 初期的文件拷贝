@@ -1,0 +1,31 @@
+package www.java.test;
+
+import java.io.*;
+
+public class Test{
+    public static void main(String[] args) throws Exception{
+        //源文件路径
+        String sourceFilePath = "C:"+File.separator+"Users"+File.separator+"Calm"+File.separator+"Desktop"+File.separator+"MySelf.jpg";
+        //目标文件路径
+        String destFilePath = "C:"+File.separator+"Users"+File.separator+"Calm"+File.separator+"Desktop"+File.separator+"MySelf1.jpg";
+        boolean result = copyFile(sourceFilePath, destFilePath);
+        System.out.println(result);
+    }
+    public static boolean copyFile(String sourceFilePath, String destFilePath) throws Exception{
+        long start = System.currentTimeMillis();
+        //取得File对象
+        File sourceFile = new File(sourceFilePath);
+        File destFile = new File(destFilePath);
+        //取得源文件的输入流
+        InputStream in = new FileInputStream(sourceFile);
+        //取得目标文件的输出流
+        OutputStream out = new FileOutputStream(destFile);
+        int len = 0;
+        while((len = in.read()) != -1){//当源文件数据没读取完时，不断读取数据到data数组中，一次只能读取一个数据
+            out.write(len);//将读取到的数据写到目标文件中，但一次只能写入一个数据
+        }
+        long end = System.currentTimeMillis();
+        System.out.println("文件拷贝花费的时间为："+ (end-start));
+        return true;
+    }
+}
