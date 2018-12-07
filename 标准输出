@@ -1,0 +1,15 @@
+package www.java.test;
+
+import java.io.IOException;
+import java.io.OutputStream;
+
+public class Test{
+    public static  void main(String[] args){
+        OutputStream out = System.out;
+        try {
+            out.write("真香".getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
