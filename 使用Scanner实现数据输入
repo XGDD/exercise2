@@ -1,0 +1,15 @@
+package www.java.test;
+
+import java.util.Scanner;
+
+public class Test{
+    public static  void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("请输入年龄：");
+        if(scanner.hasNextInt()){//有输入内容，并且输入数据的类型是Int型
+            int age = scanner.nextInt();
+            System.out.println(age);
+        }
+        scanner.close();
+    }
+}
