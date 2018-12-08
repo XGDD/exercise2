@@ -1,0 +1,31 @@
+package www.java.test;
+
+import java.io.*;
+
+class Person implements Serializable {
+    private int age;
+    private String name;
+
+    public Person(int age, String name) {
+        this.age = age;
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "age=" + age +
+                ", name='" + name + '\'' +
+                '}';
+    }
+}
+
+public class Test{
+    public static void main(String[] args) throws Exception{
+        File file = new File("C:\\Users\\Calm\\Desktop\\Test.txt");
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
+        Object result = ois.readObject();
+        System.out.println(result);
+        ois.close();
+    }
+}
