@@ -1,0 +1,50 @@
+package www.java.test;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+
+class Person implements Serializable {
+    private int age;
+    private String name;
+    public Person(int age, String name) {
+        this.age = age;
+        this.name = name;
+    }
+    @Override
+    public String toString() {
+        return "Person{" +
+                "age=" + age +
+                ", name='" + name + '\'' +
+                '}';
+    }
+    public boolean equals(Object obj){
+        if(this == obj){
+            return true;
+        }
+        if(obj == null){
+            return false;
+        }
+        if(!(obj instanceof Person)){
+            return false;
+        }
+        //先发生向下转型
+        Person per = (Person) obj;
+        return this.age == per.age && this.name.equals(per.name);
+    }
+}
+
+public class Test{
+    public static void main(String[] args) throws Exception{
+        List<Person> list = new ArrayList<>();
+       Person per1 = new Person(19,"李雷");
+       Person per2 = new Person(10,"韩梅梅");
+       Person per3 = new Person(30,"王五");
+       list.add(per1);
+       list.add(per2);
+       list.add(per3);
+        System.out.println(list.get(1));
+        System.out.println(list);
+        System.out.println(list.contains(per3));
+    }
+}
