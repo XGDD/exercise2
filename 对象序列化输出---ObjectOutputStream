@@ -1,0 +1,33 @@
+package www.java.test;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+
+class Person implements Serializable {
+    private int age;
+    private String name;
+
+    public Person(int age, String name) {
+        this.age = age;
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "age=" + age +
+                ", name='" + name + '\'' +
+                '}';
+    }
+}
+
+public class Test{
+    public static void main(String[] args) throws Exception{
+        File file = new File("C:\\Users\\Calm\\Desktop\\Test.txtx");
+        ObjectOutputStream oss = new ObjectOutputStream(new FileOutputStream(file));
+        oss.writeObject(new Person(20,"大大"));
+        oss.close();
+    }
+}
