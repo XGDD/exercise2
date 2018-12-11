@@ -1,0 +1,30 @@
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int result = 1;
+        List<String> a = new ArrayList<>();
+        List<Integer> tem = new ArrayList<>();
+        a.add(s.charAt(0) + "");//加""的原因是s.charAt(i)是字符，但a是String数组，类型不符，所以要转换
+        for(int i = 1; i < s.length(); i++){
+            if(!a.contains(s.charAt(i) + "")){
+                a.add(s.charAt(i) + "");
+                result += 1;
+                if(i == s.length()-1){
+                    tem.add(result);
+                }
+            }else{
+                tem.add(result);
+                a.clear();
+                a.add(s.charAt(i) + "");
+                result = 1;
+                continue;
+            }
+        }
+        int max = tem.get(0);
+        for(int i = 1; i < tem.size(); i++){
+            if(tem.get(i) > max){
+                max = tem.get(i);
+            }
+        }
+        return max;
+    }
+}
