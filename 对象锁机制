@@ -1,0 +1,27 @@
+//锁代码块
+package www.java.test;
+
+public class Test{
+    public static void main(String[] args){
+        Object obj = new Object();
+        synchronized (obj){
+            System.out.println("hello world");
+        }
+    }
+}
+
+
+
+
+
+//锁方法
+package www.java.test;
+
+public class Test{
+    public static void main(String[] args){
+        test();
+        }
+        public static synchronized void test(){//加了static，锁的是当前的Test类
+            System.out.println("hello world");
+    }
+}
