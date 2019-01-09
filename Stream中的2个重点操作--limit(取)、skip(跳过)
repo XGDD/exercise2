@@ -1,0 +1,21 @@
+package www.java.test;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import java.lang.String;
+
+public class Test{
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        Collections.addAll(list,"1.C++","2.Java","3.Python","4.JavaScript","5.PHP","6.SQL","7.C");
+        //分页  类似于数据库中limit offset
+
+        //跳过0个取2个
+        System.out.println(list.stream().skip(0).limit(2).collect(Collectors.toList()));
+        //过滤---跳过2个--取2个
+        System.out.println(list.stream().filter(s -> s.contains("Java")).skip(2).limit(2).collect(Collectors.toList()));
+    }
+}
