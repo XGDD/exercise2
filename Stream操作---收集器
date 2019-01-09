@@ -1,0 +1,29 @@
+package www.java.test;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import java.lang.String;
+
+public class Test{
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        Collections.addAll(list,"C++","Java","Python","JavaScript");
+        Stream<String> stream = list.stream();
+        //收集过滤后的结果
+        
+        //过滤List集合中元素包含Java字样的元素，返回新的List
+        List<String> newList = list.stream().filter(s -> s.contains("Java")).collect(Collectors.toList());
+        System.out.println(newList);
+
+
+        //判断List集合中的元素是否全部以Java开头
+        System.out.println(list.stream().allMatch(s -> s.contains("Java")));
+
+
+        //判断List集合中的元素是否有任意一个以Java开头
+        System.out.println(list.stream().anyMatch(s -> s.contains("Java")));
+    }
+}
