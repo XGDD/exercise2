@@ -1,0 +1,24 @@
+package www.java.test;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.function.Consumer;
+
+public class Test{
+    public static void main(String[] args) {
+        List list = new ArrayList();
+        Collections.addAll(list,"C++","Java","Python");
+        //方法引用
+        list.forEach(System.out::println);
+        //Lambda表达式
+        list.forEach(s-> System.out.println(s));
+        //匿名内部类
+        list.forEach(new Consumer() {
+            @Override
+            public void accept(Object o) {
+                System.out.println(o);
+            }
+        });
+    }
+}
