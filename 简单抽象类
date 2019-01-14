@@ -1,0 +1,26 @@
+package www.java.test;
+
+abstract class Person{
+    private String name;
+    public String getName(){
+        return name;
+    }
+    //抽象方法
+    public abstract void fun();
+}
+
+class Student extends Person{
+
+    @Override
+    public void fun() {
+        System.out.println("子类继承抽象类");
+    }
+}
+
+public class Test{
+    public static void main(String[] args) {
+        //向上转型
+        Person person = new Student();
+        person.fun();
+    }
+}
