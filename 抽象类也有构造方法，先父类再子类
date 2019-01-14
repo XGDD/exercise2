@@ -1,0 +1,25 @@
+package www.java.test;
+
+abstract class Person{
+    public Person(){
+        this.print();
+    }
+    public abstract void print();
+}
+
+class Student extends Person{
+    private int num = 100;
+    public Student(int num){
+        this.num = num;
+    }
+    @Override
+    public void print() {
+        System.out.println(this.num);
+    }
+}
+
+public class Test{
+    public static void main(String[] args) {
+        new Student(30).print();
+    }
+}
