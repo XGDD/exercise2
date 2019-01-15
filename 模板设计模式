@@ -1,0 +1,70 @@
+package www.java.test;
+
+import java.util.Scanner;
+
+abstract class CaffeineBeverage{
+    //只允许子类使用，不允许被覆写，不准子类修改核心冲泡法
+     final void prepareRecipe(){
+        boilWater();
+        brew();
+        pourInCup();
+        if(customerWantsCondiments()) {
+            addCondiments();
+        }
+    }
+    void boilWater(){
+        System.out.println("将水烧开");
+    }
+    void pourInCup(){
+        System.out.println("将饮料倒入杯中");
+    }
+    //钩子方法
+    boolean customerWantsCondiments(){
+         return true;
+    }
+    abstract void brew();
+    abstract void addCondiments();
+}
+class Coffee extends CaffeineBeverage{
+    void brew(){
+        System.out.println("冲泡咖啡");
+    }
+    void addCondiments(){
+        System.out.println("加糖和牛奶");
+    }
+    boolean customerWantsCondiments(){
+        System.out.println("你需要加糖或牛奶吗？ y/n");
+        String result = getUserInfo();
+        if(result.equals("y")){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    //获取用户的输入
+    private String getUserInfo(){
+        Scanner scanner = new Scanner(System.in);
+        String str = scanner.nextLine();
+        return str;
+    }
+}
+class Tea extends CaffeineBeverage{
+
+    @Override
+    void brew() {
+        System.out.println("浸泡茶叶");
+    }
+
+    @Override
+    void addCondiments() {
+        System.out.println("加柠檬");
+    }
+}
+public class Test{
+    public static void main(String[] args) {
+        CaffeineBeverage coffee = new Coffee();
+        CaffeineBeverage tea = new Tea();
+        coffee.prepareRecipe();
+        tea.prepareRecipe();
+    }
+}
