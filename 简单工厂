@@ -1,0 +1,42 @@
+package www.java.test;
+
+import java.util.Scanner;
+
+interface Computer{
+    void printComputer();
+}
+class MacbookPro implements Computer{
+
+    @Override
+    public void printComputer() {
+        System.out.println("This is a MacbookPro");
+    }
+}
+class SurfaceBook implements Computer{
+
+    @Override
+    public void printComputer() {
+        System.out.println("This is a Surfacebook");
+    }
+}
+//第三方工厂类
+class ComputerFactory{
+    public static Computer getInstance(String type){
+        if(type.equals("mac")){
+            return new MacbookPro();
+        }else if(type.equals("surface")){
+            return new SurfaceBook();
+        }
+        return null;
+    }
+}
+public class Test{
+    //客户端
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("请输入你想要的电脑型号：");
+        String type = scanner.nextLine();
+        Computer computer = ComputerFactory.getInstance(type);
+        computer.printComputer();
+    }
+}
