@@ -1,0 +1,26 @@
+interface A{
+    void test1();
+}
+interface B{
+    void test2();
+}
+interface C extends A,B{
+    void test3();
+}
+class D implements C{
+
+    @Override
+    public void test1() {
+        System.out.println("test1");
+    }
+
+    @Override
+    public void test2() {
+        System.out.println("test2");
+    }
+
+    @Override
+    public void test3() {
+        System.out.println("test3");
+    }
+}
