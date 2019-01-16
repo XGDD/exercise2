@@ -1,0 +1,43 @@
+package www.java.test;
+
+import com.sun.org.apache.xpath.internal.SourceTree;
+
+//业务接口
+interface ISubject{
+    void buyComputer();
+}
+//真实主题类
+class RealSubjectImpl implements ISubject{
+    public void buyComputer(){
+        System.out.println("买一台macbookpro");
+    }
+}
+//代理类
+class ProxySubjectImpl implements ISubject{
+    private ISubject realSubject;
+    //构造注入，注入真实主题类，构造函数传入的是接口类型的参数，是因为不知道具体的真实主题类是哪一个，所以传一个接口类型的
+    public ProxySubjectImpl(ISubject realISubject){
+        this.realSubject = realISubject;
+    }
+    public void beforeSubject(){
+        System.out.println("去银行取钱、排队");
+    }
+    public void afterSubject(){
+        System.out.println("装各种软件.......");
+    }
+    public void buyComputer(){
+        //购买之前的操作
+        beforeSubject();
+        //真正的操作，但这个操作是客户来完成的，所以需要通过构造方法把真实客户传进来，通过真实主题类来完成这个操作
+        this.realSubject.buyComputer();
+        //购买之后的操作
+        afterSubject();
+    }
+}
+public class Test{
+    public static void main(String[] args){
+        //通过向上转型把真实主题类传进去了
+        ISubject subject = new ProxySubjectImpl(new RealSubjectImpl());
+        subject.buyComputer();
+    }
+}
