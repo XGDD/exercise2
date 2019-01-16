@@ -1,0 +1,21 @@
+interface IMyInterface{
+    String str = "hello";//全局常量
+    void print();;//抽象方法
+}
+abstract class News{
+    public abstract void getNews();
+}
+class MyInterfaceImpl extends News implements IMyInterface{
+    public void print(){
+        System.out.println(str);
+    }
+    public void getNews(){
+        System.out.println(str);
+    }
+}
+public class Test{
+    public static void main(String[] args) {
+        News news = new MyInterfaceImpl();
+        IMyInterface myInterface = (IMyInterface) news;
+        myInterface.print();
+    }
