@@ -1,0 +1,54 @@
+package www.java.test;
+
+import java.util.Scanner;
+
+interface Computer{
+    void printComputer();
+}
+class MacbookPro implements Computer{
+
+    @Override
+    public void printComputer() {
+        System.out.println("This is a MacbookPro");
+    }
+}
+class SurfaceBook implements Computer{
+
+    @Override
+    public void printComputer() {
+        System.out.println("This is a Surfacebook");
+    }
+}
+class AlienWare implements Computer{
+
+    @Override
+    public void printComputer() {
+        System.out.println("This is a AlienWare");
+    }
+}
+interface ComputerFactory{
+    Computer createCoputer();
+}
+class SurfaceFactory implements ComputerFactory{
+
+    @Override
+    public Computer createCoputer() {
+        return new SurfaceBook();
+    }
+}
+class AppleFactory implements ComputerFactory{
+
+    @Override
+    public Computer createCoputer() {
+        return new MacbookPro();
+    }
+}
+public class Test{
+    //客户端
+    public static void main(String[] args) {
+        //先拿到苹果的工厂
+        ComputerFactory computerFactory = new AppleFactory();
+        Computer computer = computerFactory.createCoputer();
+        computer.printComputer();
+    }
+}
