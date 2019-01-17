@@ -1,0 +1,17 @@
+package www.java.test;
+
+import java.util.*;
+
+public class Test{
+    public static void main(String[] args) {
+        Vector<String> vector = new Vector<>();
+        vector.add("Java");
+        vector.add("C++");
+        vector.add("Python");
+        vector.add("PHP");
+        Enumeration enumeration = vector.elements();
+        while(enumeration.hasMoreElements()){
+            System.out.println(enumeration.nextElement());
+        }
+    }
+}
