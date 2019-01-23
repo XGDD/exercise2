@@ -1,0 +1,186 @@
+public final class ArrayUtil {
+    
+    /**
+     * 数组中元素未找到的下标，值为-1
+     */
+    public static final int INDEX_NOT_FOUND = -1;
+    
+    private ArrayUtil() {
+    
+    }
+    
+    
+    /**
+     * 数组是否为空
+     *
+     * @param <T>   数组元素类型
+     * @param array 数组
+     * @return 是否为空
+     */
+    @SuppressWarnings("unchecked")
+    public static <T> boolean isEmpty(final T... array) {
+        //TODO
+        if(array == null){
+            return true;
+        }
+        if(array.getClass().isArray() && Array.getLength(array) == 0){
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+     * 数组是否为空<br>
+     * 此方法会匹配单一对象，如果此对象为{@code null}则返回true<br>
+     * 如果此对象为非数组，理解为此对象为数组的第一个元素，则返回false<br>
+     * 如果此对象为数组对象，数组长度大于0情况下返回false，否则返回true
+     *
+     * @param array 数组
+     * @return 是否为空
+     */
+    public static boolean isEmpty(Object array) {
+        //TODO
+        if(array == null){
+            return true;
+        }
+        if(array.getClass().isArray() && Array.getLength(array) == 0){
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+     * 数组是否为空
+     *
+     * @param array 数组
+     * @return 是否为空
+     */
+    public static boolean isEmpty(final long... array) {
+        //TODO
+        if(array == null){
+            return true;
+        }
+        if(array.getClass().isArray() && Array.getLength(array) == 0){
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+     * 数组是否为空
+     *
+     * @param array 数组
+     * @return 是否为空
+     */
+    public static boolean isEmpty(final int... array) {
+        //TODO
+        if(array == null){
+            return true;
+        }
+        if(array.getClass().isArray() && Array.getLength(array) == 0){
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+     * 数组是否为空
+     *
+     * @param array 数组
+     * @return 是否为空
+     */
+    public static boolean isEmpty(final short... array) {
+        //TODO
+        if(array == null){
+            return true;
+        }
+        if(array.getClass().isArray() && Array.getLength(array) == 0){
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+     * 数组是否为空
+     *
+     * @param array 数组
+     * @return 是否为空
+     */
+    public static boolean isEmpty(final char... array) {
+        //TODO
+        if(array == null){
+            return true;
+        }
+        if(new String(array).isEmpty()){
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+     * 数组是否为空
+     *
+     * @param array 数组
+     * @return 是否为空
+     */
+    public static boolean isEmpty(final byte... array) {
+        //TODO
+        if(array == null){
+            return true;
+        }
+        if(new String(array).isEmpty()){
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+     * 数组是否为空
+     *
+     * @param array 数组
+     * @return 是否为空
+     */
+    public static boolean isEmpty(final double... array) {
+        //TODO
+        if(array == null){
+            return true;
+        }
+        if(array.getClass().isArray() && Array.getLength(array) == 0){
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+     * 数组是否为空
+     *
+     * @param array 数组
+     * @return 是否为空
+     */
+    public static boolean isEmpty(final float... array) {
+        //TODO
+        if(array == null){
+            return true;
+        }
+        if(array.getClass().isArray() && Array.getLength(array) == 0){
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+     * 数组是否为空
+     *
+     * @param array 数组
+     * @return 是否为空
+     */
+    public static boolean isEmpty(final boolean... array) {
+        //TODO
+        if(array == null){
+            return true;
+        }
+        if(array.getClass().isArray() && Array.getLength(array) == 0){
+            return true;
+        }
+        return false;
+    }
