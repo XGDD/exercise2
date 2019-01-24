@@ -1,0 +1,14 @@
+/**
+     * 新建一个空数组
+     *
+     * @param <T>           数组元素类型
+     * @param componentType 元素类型
+     * @param newSize       大小
+     * @return 空数组
+     */
+    @SuppressWarnings("unchecked")
+    public static <T> T[] newArray(Class<?> componentType, int newSize) {
+        //TODO
+        T[] newArray = (T[])Array.newInstance(componentType,newSize);
+        return newArray;
+    }
