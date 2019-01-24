@@ -1,0 +1,20 @@
+/**
+     * 是否包含{@code null}元素
+     *
+     * @param <T>   数组元素类型
+     * @param array 被检查的数组
+     * @return 是否包含{@code null}元素
+     */
+    @SuppressWarnings("unchecked")
+    public static <T> boolean hasNull(T... array) {
+        //TODO
+        if(array == null){
+            return false;
+        }
+        for(int i = 0; i < array.length; i++){
+            if((Object)array[i] == null){
+                return true;
+            }
+        }
+        return false;
+    }
