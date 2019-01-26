@@ -1,0 +1,22 @@
+  /**
+     * 将新元素添加到已有数组中<br>
+     * 添加新元素会生成一个新的数组，不影响原数组
+     *
+     * @param <T>         数组元素类型
+     * @param array       已有数组
+     * @param newElements 新元素
+     * @return 新数组
+     */
+    @SafeVarargs
+    public static <T> Object append(Object array, T... newElements) {
+        //TODO
+        
+        final int N = newElements.length;
+        if(newElements == null){
+            return array;
+        }
+        Object[] ret = new Object[N+1];
+        System.arraycopy(newElements, 0, ret, 0, N);
+        ret[N] = array;
+        return ret;
+    }
