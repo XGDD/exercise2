@@ -1,0 +1,23 @@
+ /**
+     * 获取数组对象的元素类型
+     *
+     * @param array 数组对象
+     * @return 元素类型
+     */
+    public static Class<?> getComponentType(Object array) {
+        //TODO
+        Class<?> cl = array.getClass().getComponentType();
+        return cl;
+    }
+    
+    /**
+     * 获取数组对象的元素类型
+     *
+     * @param arrayClass 数组类
+     * @return 元素类型
+     */
+    public static Class<?> getComponentType(Class<?> arrayClass) {
+        //TODO
+        Class<?> cl = arrayClass.getComponentType();
+        return cl;
+    }
