@@ -1,0 +1,65 @@
+package com.secondriver.sort.impl;
+
+import com.secondriver.sort.Element;
+import com.secondriver.sort.Sorter;
+
+/**
+ * 快速排序
+ * <p>
+ * Author: secondriver
+ * Created: 2018/10/13
+ */
+public class QuickSorter implements Sorter {
+    @Override
+    public void sort(Element[] elements) {
+        //TODO
+        int left = 0;
+        int right = elements.length;
+        quickSort(elements, left, right);
+    }
+    public static void quickSort(Element[] elements, int left, int right){
+        while(left < right){
+            int mid = quickSort_OP(elements, left, right);
+            quickSort(elements, left, mid);
+            quickSort(elements, mid + 1,right);
+        }
+    }
+    public static int getMid(Element[] elements, int left, int right){
+        int mid = left + (right - left) >> 1;
+        if(elements[left].compareTo(elements[right-1]) < 0){
+            if(elements[left].compareTo(elements[mid]) > 0){
+                return left;
+            }else if(elements[right-1].compareTo(elements[right]) > 0){
+                return right-1;
+            }else{
+                return mid;
+            }
+        }
+        else{
+            if(elements[left].compareTo(elements[mid]) < 0){
+                return left;
+            }else if(elements[right-1].compareTo(elements[right]) < 0){
+                return right-1;
+            }else{
+                return mid;
+            }
+        }
+    }
+    public static int quickSort_OP(Element[] elements, int left, int right){
+        int begin = left;
+        int end = right - 1;
+        int mid = getMid(elements, left,right);
+        while(begin < end){
+            while(elements[begin].compareTo(elements[mid]) < 0){
+                begin++;
+            }
+            elements[end--] = elements[begin++];
+            while(elements[end].compareTo(elements[mid]) > 0){
+                end--;
+            }
+            elements[begin++] = elements[end--];
+        }
+        elements[begin] = elements[mid];
+        return begin;
+    }
+}
