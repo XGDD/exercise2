@@ -1,0 +1,23 @@
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        HashMap<Character,Integer> map = new HashMap<Character,Integer>();
+        if(s == null)
+            return 0;
+        if(s.length() <= 1)
+            return s.length();
+        int longest = -1;
+        for(int i = 0;i<s.length();i++){
+            char ch = s.charAt(i);
+            if(map.containsKey(ch)){
+                longest = Math.max(map.size(),longest);
+                i = map.get(ch);//得到的是map里的int类型的数（得到最近出现的某个位置）
+                map.clear();
+            }else{
+                map.put(ch,i);
+            }
+        }
+        longest = Math.max(map.size(),longest);
+        map.clear();
+        return longest;
+    }
+}
