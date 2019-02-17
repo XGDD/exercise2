@@ -1,0 +1,28 @@
+class Solution {
+    public String longestPalindrome(String s) {
+        Set<String> palindroms = new HashSet<>();
+        s = s.trim();//去掉s的首尾空格
+        if(s.equals(new StringBuilder(s).reverse().toString())){
+            return s;
+        }else{
+            int len = s.length();
+            for(int i = 0; i < len; i++){
+                for(int j = i+1; j <= len; j++){
+                    String str = s.substring(i, j);
+                    if(str.equals(new StringBuilder(str).reverse().toString())){
+                        palindroms.add(str);
+                    }
+                }
+            }
+            Iterator<String> iterator = palindroms.iterator();
+            String candidate = iterator.next();
+            while(iterator.hasNext()){
+                String second = iterator.next();
+                if(candidate.length() < second.length()){
+                    candidate = second;
+                }
+            }
+            return candidate;
+        }
+    }
+}
