@@ -1,0 +1,20 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<Integer, String> map = new HashMap<>();
+        //向map中追加数据
+        map.put(1,"C");
+        map.put(2,"C++");
+        map.put(3,"Java");
+        map.put(4,"Python");
+        //根据key取得value
+        System.out.println(map.get(3));
+    }
+}
+--------------------- 
+作者：人山人海肉最可爱 
+来源：CSDN 
+原文：https://blog.csdn.net/huaijiu123/article/details/87526290 
+版权声明：本文为博主原创文章，转载请附上博文链接！
