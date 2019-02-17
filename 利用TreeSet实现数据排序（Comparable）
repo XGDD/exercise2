@@ -1,0 +1,65 @@
+public class Person implements Comparable<Person>{
+    private Integer age;
+    private String name;
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "age=" + age +
+                ", name='" + name + '\'' +
+                '}';
+    }
+
+    @Override
+    public int compareTo(Person o) {
+        //按年龄升序排序
+        return this.getAge() - o.getAge();
+    }
+}
+
+
+
+
+import java.util.TreeSet;
+
+public class TestTreeSet {
+    public static void main(String[] args) {
+        Person person1 = new Person();
+        Person person2 = new Person();
+        Person person3 = new Person();
+        person1.setAge(20);
+        person1.setName("Tonny");
+        person2.setAge(25);
+        person2.setName("Jack");
+        person3.setAge(17);
+        person3.setName("Calm");
+
+        TreeSet<Person> treeSet = new TreeSet<>();
+        treeSet.add(person1);
+        treeSet.add(person2);
+        treeSet.add(person3);
+        //Person类实现可比较接口
+        for(Person person : treeSet){
+            System.out.println(person);
+        }
+    }
+}
+
+
+
