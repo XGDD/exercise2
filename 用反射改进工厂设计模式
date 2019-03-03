@@ -1,0 +1,33 @@
+interface IFruit{
+    void eat();
+}
+
+class AppleImpl implements IFruit {
+
+    @Override
+    public void eat() {
+        System.out.println("吃苹果");
+    }
+}
+
+class BananaImpl implements IFruit{
+
+    @Override
+    public void eat() {
+        System.out.println("吃香蕉");
+    }
+}
+
+class FruitFactory{
+    public static IFruit getInstance(String className) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
+        IFruit fruit = (IFruit)Class.forName(className).newInstance();
+        return fruit;
+    }
+}
+
+public class Test{
+    public static void main(String[] args) throws IllegalAccessException, InstantiationException, ClassNotFoundException {
+        IFruit fruit = FruitFactory.getInstance("www.bit.java.test.AppleImpl");
+        fruit.eat();
+    }
+}
