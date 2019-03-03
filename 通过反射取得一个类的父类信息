@@ -1,0 +1,27 @@
+package www.bit.com;
+
+class TestParent{
+
+}
+
+public class Test extends TestParent{
+    public static void main(String[] args) {
+       //获取类的包名
+        Class cl = Test.class;
+        Package pa = cl.getPackage();
+        System.out.println("Test类的包名是："+pa.getName());
+
+        //获取类的父类
+        Class supperClass = cl.getSuperclass();
+        //获取父类的全名称
+        System.out.println("Test父类的全名称为："+supperClass.getName());
+        //获取父类名称
+        System.out.println("Test父类的名称为"+supperClass.getSimpleName());
+
+        //获取类的实现接口
+        Class[] interfaceArray = cl.getInterfaces();
+        for(Class c : interfaceArray){
+            System.out.println("Tset类实现的接口有："+c.getName());
+        }
+    }
+}
