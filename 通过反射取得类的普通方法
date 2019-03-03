@@ -1,0 +1,108 @@
+package www.bit.com;
+
+import java.lang.reflect.Method;
+
+class Person{
+    private Integer age;
+    private String name;
+
+    public Person(){
+
+    }
+
+    public Person(int age, String name){
+        this.age = age;
+        this.name = name;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "age=" + age +
+                ", name='" + name + '\'' +
+                '}';
+    }
+}
+
+public class Test{
+    public static void main(String[] args) {
+        Class cl = Person.class;
+        //获取cl对象本类的方法
+        Method[] methods = cl.getDeclaredMethods();
+        for(Method method : methods){
+            System.out.println(method.getName());
+        }
+    }
+}
+
+
+
+
+package www.bit.com;
+
+import java.lang.reflect.Method;
+
+class Person{
+    private Integer age;
+    private String name;
+
+    public Person(){
+
+    }
+
+    public Person(int age, String name){
+        this.age = age;
+        this.name = name;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "age=" + age +
+                ", name='" + name + '\'' +
+                '}';
+    }
+}
+
+public class Test{
+    public static void main(String[] args) {
+        Class cl = Person.class;
+        //获取cl对象的方法，包括它父类的普通方法
+        Method[] methods = cl.getMethods();
+        for(Method method : methods){
+            System.out.println(method.getName());
+        }
+    }
+}
