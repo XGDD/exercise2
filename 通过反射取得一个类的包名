@@ -1,0 +1,8 @@
+public class Test{
+    public static void main(String[] args) {
+        //获取类的包名
+        Class cl = Test.class;
+        Package pa = cl.getPackage();
+        System.out.println("Test类的包名是："+pa.getName());
+    }
+}
