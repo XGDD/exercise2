@@ -1,0 +1,67 @@
+import java.util.Date;
+
+public class Test{
+    public static void main(String[] args) {
+        Date date = new Date();//通过类实例化对象
+        Class ret = date.getClass();
+        System.out.println(ret.getName());
+    }
+}
+
+
+
+
+
+import java.util.Date;
+
+public class Test{
+    public static void main(String[] args) {
+        Date date = new Date();//通过类实例化对象
+        Class ret = date.getClass();
+        System.out.println(ret.getName());
+
+        Date date2 = new Date();//通过类实例化对象
+        Class ret2 = date.getClass();
+        System.out.println(ret2.getName());
+
+        System.out.println(ret == ret2);
+    }
+}
+
+
+import java.util.Date;
+
+public class Test{
+    public static void main(String[] args) {
+        Date date = new Date();//通过类实例化对象
+        Class ret = date.getClass();
+        //通过Class对象的方法获取实例化对象
+        try {
+        	//用Object类型的参数接收是因为，目前不知道是什么类型，Object是所有类的父类
+            Object object = ret.newInstance();
+            //判断object是不是Date类的对象
+            System.out.println(object instanceof java.util.Date);
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+
+
+import java.util.Date;
+
+public class Test{
+    public static void main(String[] args) throws IllegalAccessException, InstantiationException {
+        Date date = new Date();//通过类实例化对象
+        Class ret = date.getClass();
+        Class ret2 = date.getClass();
+        System.out.println(ret.newInstance() == ret2.newInstance());
+    }
+}
+
+
+
+
