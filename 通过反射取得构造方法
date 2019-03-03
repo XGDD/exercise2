@@ -1,0 +1,67 @@
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
+class TestParent{
+
+}
+
+interface interface1{
+
+}
+
+interface interface2{
+
+}
+
+public class Test extends TestParent implements interface1, interface2{
+    private int a;
+    public Test(){
+
+    }
+
+    public Test(int a){
+        this.a = a;
+    }
+
+    public Test(int a, String s){
+
+    }
+
+    public int getA(){
+        return a;
+    }
+
+    public static void main(String[] args) {
+        //获取类的包名
+        Class cl = Test.class;
+        Package pa = cl.getPackage();
+/获取所有的构造方法
+        //通过构造方法实例化对象，解决class.newInstance()只调用无参构造的问题
+        Constructor[] constructors = cl.getConstructors();
+        for(Constructor c : constructors){
+            StringBuilder sb = new StringBuilder();
+            for(Class classe : c.getParameterTypes()){
+                sb.append(classe.getName()).append(",");
+            }
+            sb.setLength(sb.length() == 0 ? 0 : sb.length() - 1);
+            System.out.println(c.getName() + "(" + sb.toString() + ")");
+        }
+
+        //获取某一个构造方法
+        try {
+            Constructor constructor = cl.getConstructor(int.class);
+            Object obj = constructor.newInstance(6);
+            System.out.println(obj.getClass().getName());
+            Test test = (Test) obj;
+            System.out.println(test.getA());
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+    }
+}
