@@ -1,0 +1,55 @@
+package www.bit.com;
+
+import java.io.File;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
+class Person{
+    private String name;
+
+    public Person(){
+
+    }
+
+    public Person(String name){
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                '}';
+    }
+}
+
+public class Test{
+    public static void main(String[] args) {
+        Class cl = Person.class;
+        try {
+            //实例化一个Student类对象
+            Object studentObject = cl.newInstance();
+            //操作school属性
+            Field nameField = cl.getDeclaredField("name");
+            //取消封装
+            nameField.setAccessible(true);
+            //更换属性值
+            nameField.set(studentObject,"Calm");
+            System.out.println(studentObject);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+    }
+}
