@@ -1,0 +1,29 @@
+import java.util.Scanner;
+
+public class Test {
+    public static void main(String[] args){
+        Scanner in = new Scanner(System.in);
+        int n = 0;
+        while(in.hasNextInt()){
+            n = in.nextInt();
+            int ret = sub(n);
+        }
+}
+    public static int sub(int n){
+        int first = 2;
+        int result = 0;
+        if(n > 0){
+            int[] arr = new int[n];
+            for(int i = 0; i < n; i++){
+                arr[i] = first;
+                first = first + 3;
+            }
+            for(int j = 0; j < arr.length; j++){
+                result = result + arr[j];
+            }
+            System.out.println(result);
+            return 0;
+        }
+        return -1;
+    }
+}
