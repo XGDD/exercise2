@@ -1,0 +1,26 @@
+public class TestTest {
+    public static void main(String[] args) {
+        String[] st = trans("This is a APPLE",11);
+        for(int i = (st.length - 1); i >= 0; i--){
+            System.out.print(st[i] + " ");
+        }
+    }
+    public static String[] trans(String s, int n){
+        String[] strings = s.split(" ");
+        String[] result = new String[strings.length];
+        for(int i = 0; i < strings.length; i++){
+            char[] arr = strings[i].toCharArray();
+            for(int j = 0; j < arr.length; j++){
+                if(arr[j] >= 'a' && arr[j] <= 'z'){
+                    arr[j] = (char)(arr[j] - 32);
+                }else if(arr[j] >= 'A' && arr[j] <= 'Z'){
+                    arr[j] = (char)(arr[j] + 32);
+                }else{
+                    arr[j] = arr[j];
+                }
+                result[i] = new String(arr);
+            }
+        }
+        return result;
+    }
+}
