@@ -1,0 +1,32 @@
+package www.bit.com;
+
+import java.util.Scanner;
+
+public class TestTest {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int ret = sum(n);
+        System.out.println(ret);
+    }
+
+    /**
+     * 爬楼梯问题
+     * 假设你正在爬楼梯，楼梯有n级，每次只能爬1级或2级，那有多少种方法到楼梯的顶部
+     *
+     * 假设爬上n级有S(n)种方法，在到n级之前，要么在n-1级，要么在n-2级，所以S(n) = S(n-1) + S(n-2)
+     *
+     * 在1级时只有1种方法，在2级时只有两种方法
+      * @param n
+     * @return
+     */
+    public static int sum(int n){
+        if(n == 1){
+            return 1;
+        }
+        if(n == 2){
+            return 2;
+        }
+        return sum(n - 1) + sum(n - 2);
+    }
+}
