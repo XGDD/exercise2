@@ -1,0 +1,17 @@
+public class Test {
+    public static void main(String[] args) {
+        int[] arr = new int[]{1,2,3,4};
+        int[] result = square(arr);
+        for(int i = 0; i < result.length; i++){
+            System.out.print(result[i] + " ");
+        }
+    }
+    public static int[] square(int[] arr){
+        int length = arr.length;
+        int[] result = new int[length];
+        for(int i = 0; i < length; i++){
+            result[i] = (arr[i] * arr[i]);
+        }
+        return result;
+    }
+}
