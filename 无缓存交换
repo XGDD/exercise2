@@ -1,0 +1,12 @@
+public class TestTreeSet {
+    public static void main(String[] args) {
+        int[] AB = new int[]{1,2,3,4,5};
+        AB[0] = AB[0] + AB[1];
+        AB[1] = AB[1] - AB[0];
+        AB[0] = AB[0] + AB[1];
+        AB[1] = AB[0] + AB[1];
+        for(int i = 0; i < AB.length; i++){
+            System.out.println(AB[i]);
+        }
+    }
+}
