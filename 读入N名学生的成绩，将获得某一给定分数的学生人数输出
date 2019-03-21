@@ -1,0 +1,40 @@
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        while(in.hasNextLine()){
+            String n = in.nextLine();
+            String score = in.nextLine();
+            String limit = in.nextLine();
+            String[] arr = score.split(" ");
+            int result = Judge(n, arr, limit);
+            System.out.println(result);
+        }
+    }
+    public static int Judge(String n, String[] score, String limit){
+        int N = Integer.parseInt(n);
+        int count = 0;
+        int point = Integer.parseInt(limit);
+        int[] arr= new int[score.length];
+        for(int i = 0; i < score.length; i++){
+            arr[i] = Integer.parseInt(score[i]);
+        }
+        if(N < 1000 && between(arr)){
+            for(int j = 0; j < arr.length; j++){
+                if(arr[j] == point){
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+    public static boolean between(int[] arr){
+        for(int i = 0; i < arr.length; i++){
+            if(arr[i] <0 || arr[i] > 100){
+                return false;
+            }
+        }
+        return true;
+    }
+}
