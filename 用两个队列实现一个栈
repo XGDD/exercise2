@@ -1,0 +1,18 @@
+package www.bit.com;
+import java.util.Queue;
+import java.util.Stack;
+import java.util.concurrent.ArrayBlockingQueue;
+
+public class Test {
+    Queue<Integer> queue1 = new ArrayBlockingQueue<>(100);
+    Queue<Integer> queue2 = new ArrayBlockingQueue<>(100);
+    public int pop(){
+        while(queue1.size() != 1){
+            queue2.add(queue1.poll());
+        }
+        return queue1.poll();
+    }
+    public void push(int node){
+        queue1.add(node);
+    }
+}
