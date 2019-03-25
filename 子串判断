@@ -1,0 +1,24 @@
+package www.bit.com;
+
+import java.util.*;
+
+public class TestTest {
+    public static void main(String[] args) {
+        String[] p = {"abc", "b", "d", "cd"};
+        boolean[] result = new boolean[4];
+        int n= 4;
+        String s = "abc";
+        result = chkSubStr(p, n, s);
+        for(int i = 0; i < n; i++){
+            System.out.println(result[i]);
+        }
+    }
+    public static boolean[] chkSubStr(String[] p, int n, String s) {
+        // write code here
+        boolean[] result = new boolean[n];
+        for(int i = 0; i < p.length; i++){
+            result[i] = s.contains(p[i]);
+        }
+        return result;
+    }
+}
