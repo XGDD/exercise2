@@ -10,21 +10,15 @@ public class TestTest {
     }
     public static int getValue(int[] gifts, int n) {
         // write code here
-        Map<Integer, Integer> map = new HashMap<>(n);
-        int[] arr = new int[n];
-        for(int i = 0; i < n; i++){
-            if(map != null && map.keySet().contains(gifts[i])){
-                map.put(gifts[i], map.get(gifts[i])+1);
-            }else
-                map.put(gifts[i], ++arr[i]);
-        }
-        if(map.size() != 0){
-            for(Map.Entry<Integer, Integer> entry : map.entrySet()){
-                if(entry.getValue() > (n/2)){
-                    return entry.getKey();
-                }
+        //因为某次金额出现的次数超过总次数的一半，所以进行排序，出现次数超过一半的那个数一定在中间有出现
+        Arrays.sort(gifts);
+        int ans = gifts[n/2];
+        int num = 0;
+        for(int i = 0; i < gifts.length; i++){
+            if(gifts[i] == ans){
+                num++;
             }
         }
-        return 0;
+        return num <= n/2 ? 0 : ans; 
     }
 }
