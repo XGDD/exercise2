@@ -1,0 +1,30 @@
+package www.bit.com;
+
+import java.util.*;
+
+public class TestTest {
+    public static void main(String[] args) {
+        int[] arr = {1,2,3,2,2};
+        int result = getValue(arr, 5);
+        System.out.println(result);
+    }
+    public static int getValue(int[] gifts, int n) {
+        // write code here
+        Map<Integer, Integer> map = new HashMap<>(n);
+        int[] arr = new int[n];
+        for(int i = 0; i < n; i++){
+            if(map != null && map.keySet().contains(gifts[i])){
+                map.put(gifts[i], map.get(gifts[i])+1);
+            }else
+                map.put(gifts[i], ++arr[i]);
+        }
+        if(map.size() != 0){
+            for(Map.Entry<Integer, Integer> entry : map.entrySet()){
+                if(entry.getValue() > (n/2)){
+                    return entry.getKey();
+                }
+            }
+        }
+        return 0;
+    }
+}
