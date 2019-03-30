@@ -1,0 +1,64 @@
+import java.util.Scanner;
+
+class Singleton{
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        while(in.hasNextLine()){
+            String str = in.nextLine();
+            String[] arr = str.split(" ");
+            int[] arr1 = new int[arr.length];
+            for(int i = 0; i < arr.length; i++){
+                arr1[i] = Integer.parseInt(arr[i]);
+            }
+            Object[] re = result(arr1);
+            for(int i = 0; i < re.length; i++){
+                if(re[i] == null){
+                    System.out.print((arr.length-1)+" ");
+                }else 
+                    System.out.print(re[i] + " ");
+            }
+        }
+    }
+    public static Object[] result(int[] arr1){
+        Object[] object = new Object[5];
+        int N1 = 0;
+        int N2 = 0;
+        int N3 = 0;
+        float N4 = 0;
+        int N5 = 0;
+        int n = 0;
+        int m = 0;
+        int sum = 0;
+        int max = 0;
+        for(int i = 1; i < arr1.length; i++){
+            if(arr1[i]%5 == 0 && arr1[i]%2 == 0){
+                N1 += arr1[i];
+            }
+            if(arr1[i]%5 == 1){
+                n++;
+                N2 += arr1[i] * Math.pow(-1, n+1);
+            }
+            if(arr1[i]%5 == 2){
+                N3++;
+            }
+            if(arr1[i]%5 == 3){
+                m++;
+                sum += arr1[i];
+            }
+            if(arr1[i]%5 == 4){
+                if(arr1[i] > max){
+                    max = arr1[i];
+                }
+            }
+        }
+        N4 = (float)sum/m;
+        N5 = max;
+        object[0] = N1;
+        object[1] = N2;
+        object[2] = N3;
+        object[3] = N4;
+        object[4] = N5;
+        return object;
+    }
+}
+
