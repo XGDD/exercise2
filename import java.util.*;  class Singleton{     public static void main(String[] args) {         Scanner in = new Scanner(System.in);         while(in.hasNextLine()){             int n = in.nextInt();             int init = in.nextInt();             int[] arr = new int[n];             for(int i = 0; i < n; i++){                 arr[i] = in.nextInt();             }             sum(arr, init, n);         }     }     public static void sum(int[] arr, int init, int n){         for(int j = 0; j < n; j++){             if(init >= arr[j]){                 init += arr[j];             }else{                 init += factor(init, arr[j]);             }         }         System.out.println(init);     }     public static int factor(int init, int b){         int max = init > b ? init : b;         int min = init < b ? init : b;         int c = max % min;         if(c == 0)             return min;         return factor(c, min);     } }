@@ -1,0 +1,35 @@
+import java.util.*;
+
+class Singleton{
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        while(in.hasNext()){
+            int n = in.nextInt();
+            int init = in.nextInt();
+            int[] arr = new int[n];
+            for(int i = 0; i < n; i++){
+                arr[i] = in.nextInt();
+            }
+            sum(arr, init, n);
+        }
+    }
+    public static void sum(int[] arr, int init, int n){
+        for(int j = 0; j < n; j++){
+            if(init >= arr[j]){
+                init += arr[j];
+            }else{
+                init += factor(init, arr[j]);
+            }
+        }
+        System.out.println(init);
+    }
+    public static int factor(int init, int b){
+        int max = init > b ? init : b;
+        int min = init < b ? init : b;
+        int c = max % min;
+        if(c == 0)
+            return min;
+        return factor(c, min);
+    }
+}
+
