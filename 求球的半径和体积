@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+public class Test7 {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        while(in.hasNext()){
+            double PI = Math.acos(-1);
+            double x0 = in.nextInt();
+            double y0 = in.nextInt();
+            double z0 = in.nextInt();
+            double x = in.nextInt();
+            double y = in.nextInt();
+            double z = in.nextInt();
+            double sum = Math.pow(x-x0, 2) + Math.pow(y-y0, 2) + Math.pow(z-z0, 2);
+            double r = Math.sqrt(sum);
+            System.out.print(String.format("%.3f", r) + " ");
+            double s = 4*PI*Math.pow(r, 3)/3;
+            System.out.println(String.format("%.3f", s));
+        }
+    }
+}
