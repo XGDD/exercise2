@@ -34,7 +34,7 @@ public class Test7 {
                 strings[i] = in.nextLine();
             }
             for(int j = 0; j < num; j++){
-                if(!strings[j].contains(",")){
+                if(!strings[j].contains(",") || !strings[j].contains(" ")){
                     result += strings[j]+",";
                 }else {
                     result += "\"" + strings[j] + "\"" + ",";
