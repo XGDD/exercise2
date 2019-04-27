@@ -1,0 +1,40 @@
+import java.util.*;
+
+public class MaxGap {
+    //左右最值最大差
+    public static void main(String[] args) {
+        int[] arr = {1,2,3,4,5};
+        System.out.println(findMaxGap(arr, 5));
+    }
+    public static int findMaxGap(int[] A, int n) {
+        // write code here
+        int[] max = new int[n];
+        int[] arr1 = new int[n];
+        int[] arr2 = new int[n];
+        int result = 0;
+        for(int i = 0; i <= n-2; i++){
+            for(int j = 0; j <= i; j++){
+                arr1[j] = A[j];
+            }
+            int m = i+1;
+            for(int k = 0; k < n-i-1; k++){
+                arr2[k] = A[m];
+                m++;
+            }
+            max[i] = Math.abs(Max(arr1) - Max(arr2));
+        }
+        for(int i = 0; i < n; i++){
+            if(max[i] > result)
+                result = max[i];
+        }
+        return result;
+    }
+    public static int Max(int[] temp){
+        int max = 0;
+        for(int i = 0; i < temp.length; i++){
+            if(temp[i] > max)
+                max = temp[i];
+        }
+        return max;
+    }
+}
