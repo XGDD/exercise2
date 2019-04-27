@@ -1,0 +1,44 @@
+import java.util.*;
+
+//顺时针打印矩阵
+public class Printer {
+    public static void main(String[] args) {
+        int[][] arr = {{1,2,3,4},{5,6,7,8},{9,10,11,12},{13,14,15,16}};
+        int[] temp = clockwisePrint(arr, 4, 4);
+        for(int i = 0; i < temp.length; i++){
+            System.out.println(temp[i]);
+        }
+    }
+    public static int[] clockwisePrint(int[][] mat, int n, int m) {
+        // write code here
+        int N = n * m;
+        int[] temp = new int[N];
+        int k = 0;
+        //一次循环是一圈
+        for(int i = 0; i < n-i; i++){
+            int j = i;
+            if (j < m-i){
+                //上
+                for(; j < m-i; j++){
+                    temp[k++] = mat[i][j];
+                }
+                //右
+                for(int t = i+1; t < n-i; t++){
+                    temp[k++] = mat[t][m-1-i];
+                }
+                //下
+                for(int r = m-2-i; r >= i; r--){
+                    if(k < temp.length)
+                        temp[k++] = mat[n-i-1][r];
+                }
+                //左
+                for(int c = n-i-2; c > i; c--){
+                    if(k < temp.length)
+                        temp[k++] = mat[c][i];
+                }
+            }
+        }
+        return temp;
+    }
+
+}
