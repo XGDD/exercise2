@@ -1,0 +1,26 @@
+import java.util.Random;
+
+public class Test9{
+    //洗牌算法
+
+    /**
+     * 思路：将54张排按顺序放进数组中，然后利用随机函数随机产生一个下标，将下标对应的牌与最后一张牌进行交换，
+     *数组的长度--，再次随机排序的时候也不需要对已经随机产生过的牌进行排序了，每次随机产生一个下标，将该下标对应的牌与每次
+     * 数组的最后一张进行交换，这样到最后，每一张牌的位置都是随机产生的
+     * @param args
+     */
+    public static void main(String[] args) {
+        int[] arr = new int[54];
+        Judge(arr);
+    }
+    public static int[] Judge(int[] arr){
+        for(int i = arr.length-1; i >= 0; i--){
+            //从0-i中选一个下标
+            int random = (int)Math.floor(Math.random()*(i+1));
+            int t = arr[i];
+            arr[i] = arr[random];
+            arr[random] = t;
+        }
+        return arr;
+    }
+}
