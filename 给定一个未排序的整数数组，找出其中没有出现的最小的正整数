@@ -1,0 +1,23 @@
+public class Test9{
+    //思路：按哈希map排序，0下标对应1，1下标对应2......如果超出数组长度，则返回length+1，小于0的和大于数组长度的都不用管
+    public static void main(String[] args) {
+        int[] arr = {-1, 0, 2, 8};
+        int result = Judge(arr);
+        System.out.println(result);
+    }
+    public static int Judge(int[] arr){
+        for(int i = 0; i < arr.length; i++){
+            //如果arr[i]==arr[arr[i]-1]，则也不需要交换
+            while(arr[i] >= 1 && arr[i] <= arr.length && arr[i] != i+1 && arr[i] != arr[arr[i]-1]){
+                int temp = arr[i];
+                arr[i] = arr[temp-1];
+                arr[temp-1] = temp;
+            }
+        }
+        for(int i = 0; i < arr.length; i++){
+            if(arr[i] != i+1)
+                return i+1;
+        }
+        return arr.length+1;
+    }
+}
