@@ -1,0 +1,16 @@
+import java.util.*;
+
+//楼梯有n阶台阶，上楼可以一步上1阶,2阶，3阶，编程序计算共有多少种不同的走法？
+
+public class GoUpstairs {
+    public int countWays(int n) {
+        // write code here
+        int[] a = new int[100000];
+            a[1] = 1;
+            a[2] = 2;
+            a[3] = 4;
+            for(int i=4;i<=n;i++)
+                a[i] = (a[i-1]+(a[i-2]+a[i-3])%1000000007) % 1000000007;
+            return a[n];
+    }
+}
